@@ -1,15 +1,14 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
-  "about": {
-    "title": "About",
-    "type": "page"
+  "index": {
+    "title": false,
+    "theme": {
+      "layout": "full"
+    },
+    "type":"page",
+    "display": "hidden"
   },
-  "contact": {
-    "title": "Contact ↗",
-    "type": "page",
-    "href": "https://twitter.com/shuding_",
-    "newWindow": true
+  "docs": {
+    "title": "Docs 📖",
+    "type": "page"
   }
 }

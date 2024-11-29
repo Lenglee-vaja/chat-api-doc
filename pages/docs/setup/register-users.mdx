@@ -1,0 +1,61 @@
+# Register User
+
+This endpoint allows you to register a new user in the system. Once registered, users can authenticate and interact with the Chat API using the **Secret Key** provided by the admin.
+
+## API Endpoint
+
+| Method | Endpoint |
+|--------|----------|
+| POST   | https://chat-api.lailaolab.com/api/users |
+
+## Request Header
+
+```json
+{
+    "Authorization": "Bearer {secret_key}"
+}
+```
+
+## Request Body
+
+```json
+{
+    "platformUserId": "671a18832572dd3242ea2455",
+    "fullName": "John Doe",
+    "phone": "081234567890",
+    "email": "john.doe@example.com",
+    "profileUrl": "https://example.com/profile.jpg"
+}
+```
+
+| Field name | Data type | Required | Description |
+|------------|-----------|----------|-------------|
+| platformUserId | String | Yes | Unique identifier for the user |
+| fullName | String | No | Full name of the user |
+| phone | String | No | Phone number of the user |
+| email | String | No | Email of the user |
+| profileUrl | String | No | URL of any image Profile |
+
+## Response
+
+```json
+{
+    "success": true,
+    "message": "SUCCESS",
+    "data": {
+        "platformUserId": "671a18832572dd3242ea2455",
+        "fullName": "John Doe",
+        "platform": "671095a00750b08e79f3a2d7",
+        "email": "john.doe@example.com",
+        "phone": "081234567890",
+        "profileUrl": "https://example.com/profile.jpg",
+        "role": "USER",
+        "isOnline": false,
+        "_id": "674925c89d93bd1ae544de0a",
+        "lastActive": "2024-11-29T02:24:08.903Z",
+        "createdAt": "2024-11-29T02:24:08.908Z",
+        "updatedAt": "2024-11-29T02:24:08.908Z",
+        "__v": 0
+    }
+}
+```
