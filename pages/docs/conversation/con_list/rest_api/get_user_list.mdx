@@ -1,0 +1,50 @@
+
+## 1. Get All Users
+
+Fetch all user and allows searching for users by their name for a specific user.
+
+### Request
+
+| Method | Endpoint |
+|--------|----------|
+| GET    | `https://chat-api.lailaolab.com/api/users` |
+
+### Query Parameters
+
+| Parameter | Type    | Required | Description |
+|-----------|---------|----------|-------------|
+| userId    | String  | Yes      | ID of the user performing the search |
+| search    | String  | No      | Name or part of the name of the user to search for |
+
+### Request Headers
+
+```json
+{
+    "Authorization": "Bearer {your_access_token}"
+}
+```
+
+### Response
+
+```json
+{
+    "success": true,
+    "message": "Users retrieved successfully",
+    "data": [
+        {
+            "_id": "user123",
+            "fullName": "John Doe",
+            "email": "john.doe@example.com",
+            "profileUrl": "https://example.com/profile.jpg",
+            "isOnline": true
+        },
+        {
+            "_id": "user456",
+            "fullName": "Jane Smith",
+            "email": "jane.smith@example.com",
+            "profileUrl": "https://example.com/profile2.jpg",
+            "isOnline": false
+        }
+    ]
+}
+```

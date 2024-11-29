@@ -1,0 +1,188 @@
+
+## 1. Create New Private Conversation
+
+Creates a new private conversation between two users.
+
+### Request
+
+| Method | Endpoint |
+|--------|----------|
+| POST   | `https://chat-api.lailaolab.com/api/messages/private` |
+
+### Request Headers
+
+```json
+{
+    "Authorization": "Bearer {your_access_token}",
+    "Content-Type": "application/json"
+}
+```
+
+### Request Body
+
+```json
+{
+    "senderId": "user123",
+    "receiverId": "user456",
+    "message": "Hello, how are you?",
+    "messageType": "TEXT",  // Optional: defaults to "TEXT"
+    "attachments": []      // Optional: for files/images
+}
+```
+
+### Request Body Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| senderId | String | Yes | ID of the user sending the message |
+| receiverId | String | Yes | ID of the user receiving the message |
+| message | String | Yes | Content of the message |
+| messageType | String | No | Type of message ("TEXT", "IMAGE", "FILE", etc.) |
+| attachments | Array | No | Array of attachment objects for media messages |
+
+
+### Response
+
+```json
+{
+    "success": true,
+    "message": "Conversation created successfully",
+    "data": {
+        "conversation": {
+            "_id": "conversation123",
+            "conversationType": "PRIVATE",
+            "participants": [
+                {
+                    "user": {
+                        "_id": "user123",
+                        "fullName": "John Doe",
+                        "profileUrl": "https://example.com/profile.jpg"
+                    },
+                    "joinDate": "2024-03-15T10:00:00Z",
+                    "isMuted": false,
+                    "isFavorite": false
+                },
+                {
+                    "user": {
+                        "_id": "user456",
+                        "fullName": "Jane Smith",
+                        "profileUrl": "https://example.com/profile2.jpg"
+                    },
+                    "joinDate": "2024-03-15T10:00:00Z",
+                    "isMuted": false,
+                    "isFavorite": false
+                }
+            ],
+            "latestMessage": {
+                "_id": "message123",
+                "sender": {
+                    "_id": "user123",
+                    "fullName": "John Doe",
+                    "profileUrl": "https://example.com/profile.jpg"
+                },
+                "messageType": "TEXT",
+                "content": "Hello, how are you?",
+                "sendAt": "2024-03-15T10:00:00Z",
+                "isRead": false,
+                "attachments": []
+            },
+            "createdAt": "2024-03-15T10:00:00Z",
+            "updatedAt": "2024-03-15T10:00:00Z"
+        }
+    }
+}
+```
+
+
+
+# Group Conversation API
+
+## Create New Group
+
+Creates a new group conversation with multiple participants.
+
+### Request
+
+| Method | Endpoint |
+|--------|----------|
+| POST   | `https://chat-api.lailaolab.com/api/conversations/group` |
+
+### Request Headers
+
+```json
+{
+    "Authorization": "Bearer {your_access_token}",
+    "Content-Type": "application/json"
+}
+```
+
+### Request Body
+
+```json
+{
+    "conversationName": "htmll-css",
+    "conversationImage": "86c29c2e-5aa1-44b5-a48c-6fb10616434c.jpeg",
+    "users": [
+        "673d78a48472fdf44da0f3dc",
+        "673e985247b4681ca61344a8"
+    ],
+    "creator": "6711b0f464886caa21ba0105"
+}
+```
+
+### Request Body Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| conversationName | String | Yes | Name of the group |
+| conversationImage | String | No | Image filename for the group avatar |
+| users | Array | Yes | Array of user IDs to add to the group |
+| creator | String | Yes | User ID of the group creator |
+
+
+
+### Response
+
+```json
+{
+    "success": true,
+    "message": "Group created successfully",
+    "data": {
+        "conversation": {
+            "_id": "group123",
+            "conversationName": "htmll-css",
+            "conversationType": "GROUP",
+            "conversationImage": "https://storage.example.com/images/86c29c2e-5aa1-44b5-a48c-6fb10616434c.jpeg",
+            "creator": {
+                "_id": "6711b0f464886caa21ba0105",
+                "fullName": "John Doe",
+                "profileUrl": "https://example.com/profile.jpg"
+            },
+            "participants": [
+                {
+                    "user": {
+                        "_id": "673d78a48472fdf44da0f3dc",
+                        "fullName": "User 1",
+                        "profileUrl": "https://example.com/profile1.jpg"
+                    },
+                    "joinDate": "2024-03-15T10:00:00Z",
+                    "isMuted": false,
+                    "isAdmin": false
+                },
+                {
+                    "user": {
+                        "_id": "673e985247b4681ca61344a8",
+                        "fullName": "User 2",
+                        "profileUrl": "https://example.com/profile2.jpg"
+                    },
+                    "joinDate": "2024-03-15T10:00:00Z",
+                    "isMuted": false,
+                    "isAdmin": false
+                }
+            ],
+            "createdAt": "2024-03-15T10:00:00Z",
+            "updatedAt": "2024-03-15T10:00:00Z"
+        }
+    }
+}
+```

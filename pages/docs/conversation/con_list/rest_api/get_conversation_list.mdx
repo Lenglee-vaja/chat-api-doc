@@ -1,0 +1,114 @@
+## 1. Get All Conversations
+
+Retrieves a paginated list of conversations for a specific user.
+
+#### Request
+
+| Method | Endpoint |
+|--------|----------|
+| GET    | `https://chat-api.lailaolab.com/api/conversations` |
+
+#### Query Parameters
+
+| Parameter | Type    | Required | Description |
+|-----------|---------|----------|-------------|
+| userId    | String  | Yes      | ID of the user fetching conversations |
+| skip      | Number  | No       | Number of records to skip (default: 0) |
+| limit     | Number  | No       | Maximum number of records to return (default: 30) |
+
+#### Request Headers
+
+```json
+{
+    "Authorization": "Bearer {your_access_token}"
+}
+```
+
+
+#### Response
+
+```json
+{
+    "success": true,
+    "message": "SUCCESS",
+    "total": 10,
+    "data": [
+        {
+            "_id": "673e986047b4681ca61344ba",
+            "conversationName": "Private",
+            "conversationType": "PRIVATE",
+            "platform": "67357559a78daa4719cd1619",
+            "participants": [
+                {
+                    "user": {
+                        "_id": "673e985247b4681ca61344a8",
+                        "platformUserId": "66fa5a9b28d79fa4b0ef5625",
+                        "fullName": "ມົວ ລີ",
+                        "platform": "67357559a78daa4719cd1619",
+                        "email": "mualee072@gmail.com",
+                        "phone": "+8562078397867",
+                        "profileUrl": "https://lailao-office-bucket.s3.ap-southeast-1.amazonaws.com/images/f4b58bcc-6ea4-418d-a246-5adc6a16bd8c.png",
+                        "role": "USER",
+                        "isOnline": false,
+                        "lastActive": "2024-11-21T02:17:54.811Z",
+                        "createdAt": "2024-11-21T02:17:54.812Z",
+                        "updatedAt": "2024-11-29T04:49:52.244Z",
+                        "__v": 0,
+                        "socketId": null
+                    },
+                    "joinDate": "2024-11-21T02:18:08.014Z",
+                    "isMuted": false,
+                    "isFavorite": false,
+                    "_id": "673e986047b4681ca61344bb"
+                },
+                {
+                    "user": {
+                        "_id": "6711b0f464886caa21ba0105",
+                        "userCode": "lrc1234",
+                        "fullName": "lenglee VAJA",
+                        "platform": "67357559a78daa4719cd1619",
+                        "email": "longlearning@gmail.com",
+                        "phone": "67676",
+                        "profileUrl": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                        "role": "USER",
+                        "lastActive": "2024-10-18T00:51:00.633Z",
+                        "createdAt": "2024-10-18T00:51:00.636Z",
+                        "updatedAt": "2024-11-29T04:53:37.444Z",
+                        "__v": 0,
+                        "isOnline": true,
+                        "socketId": "Jelm76RUHlLcoAIHAAJl"
+                    },
+                    "joinDate": "2024-11-21T02:18:08.014Z",
+                    "isMuted": false,
+                    "isFavorite": false,
+                    "_id": "673e986047b4681ca61344bc"
+                }
+            ],
+            "groupAdmin": [],
+            "createdAt": "2024-11-21T02:18:08.017Z",
+            "updatedAt": "2024-11-29T02:49:44.342Z",
+            "__v": 0,
+            "latestMessage": {
+                "_id": "67492bc8039affb80b3705e0",
+                "sender": {
+                    "_id": "673e985247b4681ca61344a8",
+                    "fullName": "ມົວ ລີ",
+                    "profileUrl": "https://lailao-office-bucket.s3.ap-southeast-1.amazonaws.com/images/f4b58bcc-6ea4-418d-a246-5adc6a16bd8c.png"
+                },
+                "conversation": "673e986047b4681ca61344ba",
+                "platform": "67357559a78daa4719cd1619",
+                "isPinned": false,
+                "messageType": "TEXT",
+                "content": "hi",
+                "sendAt": "2024-11-29T09:49:44.300Z",
+                "deliveredAllAt": "2024-11-29T02:49:44.300Z",
+                "createdAt": "2024-11-29T09:49:44.300Z",
+                "attachments": [],
+                "updatedAt": "2024-11-29T09:49:44.300Z",
+                "__v": 0,
+                "isRead": false
+            }
+        },
+    ]
+}
+```

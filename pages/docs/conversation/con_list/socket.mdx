@@ -1,0 +1,86 @@
+# Socket Events
+
+Socket events provide real-time updates for conversation lists, online status, new messages, typing indicators, and other events.
+
+## Emit Socket Events
+
+### SETUP
+Adds the user to a WebSocket room based on `userId`.
+
+#### Payload
+
+```json
+{
+    "type": "SETUP",
+    "payload": {
+    "userId": "6711b0f464886caa21ba0105"
+    }
+} 
+```
+
+
+#### Example
+
+```javascript
+    socket.emit("SETUP", {
+    type: "SETUP",
+    payload: { userId: "yourUserIdHere" }
+    });
+```
+
+
+
+
+## Listen Socket Events
+
+### CONVERSATION_LISTENING
+Listens to all real-time data emitted by the server. This event handles various types of updates sent to the client.
+
+#### Response Types
+
+- `SETUP`: Returns a list of conversations
+- `USER_ONLINE`: Notifies when a user goes online and offline
+- `TYPING`: Indicates if a user is typing
+- `NEW_MESSAGE`: Receives new messages
+- `DELETE_MESSAGE`: Indicates a message was deleted
+- `CANCEL_MESSAGE`: Indicates a message was canceled
+- `READ_MESSAGE`: Indicates messages marked as read
+
+#### Example
+
+```javascript
+
+socket.on("CONVERSATION_LISTENING", (data) => {
+    switch (data.type) {
+    case "SETUP":
+    console.log("Conversations loaded:", data.response.conversations);
+    // Initialize conversation list
+    break;
+    case "NEW_MESSAGE":
+    console.log("New message:", data.response.message);
+    // Update UI with new message
+    break;
+    case "USER_ONLINE":
+    console.log(User ${data.response.userId} is online.);
+    // Update user's online status
+    break;
+    case "TYPING":
+    console.log(User ${data.response.userId} is typing...);
+    // Show typing indicator
+    break;
+    case "DELETE_MESSAGE":
+    console.log("Message deleted:", data.response.messageId);
+    // Remove message from UI
+    break;
+    case "CANCEL_MESSAGE":
+    console.log("Message canceled:", data.response.messageId);
+    // Handle canceled message
+    break;
+    case "READ_MESSAGE":
+    console.log("Messages read:", data.response.messageIds);
+    // Update message read status
+    break;
+    default:
+    console.log("Unknown event type:", data.type);
+    }
+});
