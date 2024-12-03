@@ -3,6 +3,8 @@ const withNextra = require("nextra")({
   themeConfig: "./theme.config.tsx",
 });
 
-module.exports = withNextra({
+// Export the configuration directly
+module.exports = {
+  ...withNextra(),
   reactStrictMode: true,
-});
+};
